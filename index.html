@@ -68,10 +68,16 @@ nav ul a:hover{color:var(--ink)}
 .work:hover figcaption,.work:focus-visible figcaption{transform:none;opacity:1}
 .work small{display:block;color:var(--ember)}
 .empty{display:none;color:var(--mute);border:1px dashed var(--line);border-radius:14px;padding:40px;text-align:center}
-dialog{border:0;background:none;max-width:94vw;max-height:94vh;padding:0;color:var(--ink)}
+dialog{border:0;background:none;max-width:94vw;max-height:94vh;padding:0;margin:auto;color:var(--ink)}
 dialog::backdrop{background:rgba(5,0,2,.9)}
 #lb img{max-height:86vh;border-radius:12px;margin:auto}
-#lb p{text-align:center;margin-top:10px}
+#lb .info{display:flex;flex-direction:column;align-items:center;gap:6px;margin:18px auto 0;max-width:min(640px,92vw);text-align:center}
+#lb .info strong{font:700 24px/1.4 var(--h)}
+#lb .info .cm{color:var(--ember);font-size:14px}
+#lb .info em{font-style:normal;color:#e6cfc9;font-size:16px}
+#lb .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;list-style:none;padding:0;margin-top:8px}
+#lb .meta li{border:1px solid var(--line);border-radius:999px;padding:3px 14px;font-size:14px;background:var(--card)}
+#lb .meta small{color:var(--mute);margin-inline-end:8px}
 .x{position:fixed;top:18px;inset-inline-start:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:22px;cursor:pointer}
 /* services */
 .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
@@ -180,7 +186,7 @@ html.lock{overflow:hidden}
 .lbn,.lbp{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;transition:.25s}
 .lbn:hover,.lbp:hover{background:var(--wine);border-color:var(--red)}
 .lbn{inset-inline-start:18px}.lbp{inset-inline-end:18px}
-#lb img{max-width:92vw;object-fit:contain}
+#lb img{max-width:92vw;max-height:74vh;object-fit:contain}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script>if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("js")</script>
@@ -204,8 +210,8 @@ html.lock{overflow:hidden}
 
 <div class="stats"><div class="wrap">
 <div><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><b dir="ltr"><span data-to="4">0</span>+</b><span>سنين خبرة</span></div>
-<div><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-8 8"/></svg><b dir="ltr"><span data-to="200">0</span>+</b><span>تصميم منفّذ</span></div>
-<div><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg><b dir="ltr"><span data-to="3">0</span></b><span>خدمات أساسية</span></div>
+<div><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-8 8"/></svg><b dir="ltr"><span data-to="1000">0</span>+</b><span>تصميم منفّذ</span></div>
+<div><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.4 2.7-6 6-6s6 2.6 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c3 .2 5 2.3 5 5.3"/></svg><b dir="ltr"><span data-to="300">0</span>+</b><span>عميل</span></div>
 </div></div>
 
 <div class="mq" aria-hidden="true"><div><span>تصميمات تعليمية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات سوشيال ميديا</span><img src="assets/logo-icon.png" alt=""><span>هوية بصرية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات تعليمية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات سوشيال ميديا</span><img src="assets/logo-icon.png" alt=""><span>هوية بصرية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات تعليمية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات سوشيال ميديا</span><img src="assets/logo-icon.png" alt=""><span>هوية بصرية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات تعليمية</span><img src="assets/logo-icon.png" alt=""><span>تصميمات سوشيال ميديا</span><img src="assets/logo-icon.png" alt=""><span>هوية بصرية</span><img src="assets/logo-icon.png" alt=""></div></div>
@@ -213,7 +219,7 @@ html.lock{overflow:hidden}
 <section class="about" id="about"><div class="wrap">
 <figure><img src="assets/mainphoto.jpg" alt="MORO، مصمم ميديا"></figure>
 <div><h2>عن MORO</h2>
-<p>مصمم ميديا متخصص في التصميمات التعليمية وتصميمات السوشيال ميديا. بخبرة تزيد عن 4 سنوات ونحو 200 تصميم، شغله بيجمع بين الفكرة الواضحة والشكل القوي.</p>
+<p>مصمم ميديا متخصص في التصميمات التعليمية وتصميمات السوشيال ميديا. بخبرة تزيد عن 4 سنوات وأكثر من 300 عميل وما يزيد عن 1000 تصميم، شغله بيجمع بين الفكرة الواضحة والشكل القوي.</p>
 <p>بيشتغل مع المعلمين وصنّاع المحتوى، وبيهتم إن كل تصميم يوصل رسالته من أول نظرة.</p></div>
 </div></section>
 
@@ -235,7 +241,7 @@ html.lock{overflow:hidden}
 <p class="empty" id="aempty">مفيش أعمال في التصنيف ده لسه.</p>
 </div></div>
 
-<dialog id="lb"><button class="x" aria-label="إغلاق">×</button><button class="lbn" aria-label="التالي">‹</button><button class="lbp" aria-label="السابق">›</button><img alt=""><p></p></dialog>
+<dialog id="lb"><button class="x" aria-label="إغلاق">×</button><button class="lbn" aria-label="التالي">‹</button><button class="lbp" aria-label="السابق">›</button><img alt=""><div class="info"></div></dialog>
 
 <section id="services" style="background:var(--bg2)"><div class="wrap">
 <h2>الخدمات</h2>
@@ -290,8 +296,20 @@ html.lock{overflow:hidden}
 
 <script>
 const FB="https://www.facebook.com/mooo11267";
-/* أضف أعمالك هنا. base = مسار الصورة بدون الامتداد (png/jpg/jpeg/webp بيتعرف عليه تلقائياً)
-   أو src = المسار كاملاً. cat: edu = تعليمي | social = سوشيال ميديا */
+/* ===== طريقة إضافة عمل جديد =====
+   1) ارفع الصورة في assets/images
+   2) انسخ سطراً من الأسفل وعدّل بياناته (كل عمل = سطر واحد، وبينهم فاصلة , إلا الأخير)
+   الحقول:
+     base  : مسار الصورة بدون الامتداد (png/jpg/jpeg/webp بيتعرف عليه تلقائياً)
+             أو استخدم src بدلاً منه لو عايز المسار كاملاً بالامتداد
+     cat   : "edu" = تعليمي | "social" = سوشيال ميديا
+     title : عنوان العمل (إجباري)
+     الحقول الاختيارية (تظهر عند فتح العمل، واتركها أو احذفها لو مش عايزها):
+     desc  : وصف قصير للعمل
+     client: اسم العميل | year: السنة | tools: الأدوات المستخدمة
+   مثال:
+   {base:"assets/images/اسم الصورة",cat:"social",title:"عنوان العمل",desc:"وصف قصير",client:"اسم العميل",year:"2026",tools:"Photoshop"},
+   الترتيب في الموقع = ترتيب الأسطر (أول 3 أعمال تظهر في الصفحة الرئيسية) ===== */
 const WORKS=[
  {base:"assets/images/تصميم معلم1",cat:"edu",title:"تصميم هتشجع مين؟"},
  {base:"assets/images/تصميم معلم2",cat:"edu",title:"قولنا داخل السنة ازاي؟"},
@@ -329,8 +347,9 @@ $("back").onclick=()=>{if(pushed){pushed=false;history.back()}else{history.repla
 addEventListener("hashchange",()=>showAllPage(location.hash==="#all-works"&&ALL.length>0));
 addEventListener("keydown",e=>{if(e.key==="Escape"&&!all.hidden&&!lb.open)$("back").click()});
 Promise.all(WORKS.map(probe)).then(r=>{ALL=r.filter(Boolean);render();if(location.hash==="#all-works")showAllPage(true)});
-let LL=[],LI=0;const lbi=lb.querySelector("img"),lbp=lb.querySelector("p"),nx=lb.querySelector(".lbn"),pv=lb.querySelector(".lbp");
-function showLB(){const w=LL[LI];lbi.src=w.src;lbi.alt=w.title;lbp.textContent=w.title+" · "+L[w.cat]+(LL.length>1?"  ("+(LI+1)+"/"+LL.length+")":"");nx.hidden=pv.hidden=LL.length<2}
+let LL=[],LI=0;const lbi=lb.querySelector("img"),lbp=lb.querySelector(".info"),nx=lb.querySelector(".lbn"),pv=lb.querySelector(".lbp");
+function showLB(){const w=LL[LI];lbi.src=w.src;lbi.alt=w.title;const E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),M=[["العميل",w.client],["السنة",w.year],["الأدوات",w.tools]].filter(x=>x[1]);
+ lbp.innerHTML="<strong>"+E(w.title)+"</strong><span class=\"cm\">"+L[w.cat]+(LL.length>1?" · "+(LI+1)+"/"+LL.length:"")+"</span>"+(w.desc?"<em>"+E(w.desc)+"</em>":"")+(M.length?"<ul class=\"meta\">"+M.map(x=>"<li><small>"+x[0]+"</small>"+E(x[1])+"</li>").join("")+"</ul>":"");nx.hidden=pv.hidden=LL.length<2}
 function openLB(l,i){LL=l;LI=i;showLB();lb.showModal()}
 function step(d){LI=(LI+d+LL.length)%LL.length;showLB()}
 nx.onclick=()=>step(1);pv.onclick=()=>step(-1);
