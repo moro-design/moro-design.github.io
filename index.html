@@ -152,6 +152,35 @@ details[open] p{animation:fd .45s ease}
 @keyframes fd{from{opacity:0;transform:translateY(-8px)}}
 .cta h2{background:linear-gradient(100deg,var(--ink) 30%,var(--ember),var(--ink) 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
 @keyframes sh{to{background-position:-250% 0}}
+/* scrollbar */
+html{color-scheme:dark}
+@supports not selector(::-webkit-scrollbar){html,#all{scrollbar-width:thin;scrollbar-color:var(--red) var(--bg)}}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bg);border-inline-start:1px solid var(--line)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--wine),var(--red) 55%,var(--ember));border-radius:99px;border:3px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--red),var(--ember))}
+::selection{background:var(--red);color:#fff}
+/* works */
+.more{text-align:center;margin-top:40px}
+.tag{position:absolute;top:12px;inset-inline-start:12px;z-index:1;background:rgba(10,2,5,.78);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;font-size:13px;line-height:1.7;padding:2px 12px}
+.work{transition:border-color .35s,box-shadow .35s}
+.work:hover{border-color:var(--red);box-shadow:0 20px 50px -26px var(--red)}
+.work img{height:auto}
+.filters button small{opacity:.7;margin-inline-start:6px;font-size:13px}
+html.lock{overflow:hidden}
+#all{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;padding-bottom:90px}
+#all[hidden]{display:none}
+#all:not([hidden]){animation:ovl .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes ovl{from{opacity:0;transform:translateY(28px)}}
+#all::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(55% 40% at 80% 0,rgba(123,5,29,.5),transparent 70%)}
+.allbar{position:sticky;top:0;z-index:5;background:rgba(10,2,5,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin-bottom:56px}
+.allbar .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.allbar img{height:30px}
+#all .grid .work{animation:pop .6s cubic-bezier(.2,.8,.3,1.1) both;animation-delay:var(--d,0s)}
+.lbn,.lbp{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;transition:.25s}
+.lbn:hover,.lbp:hover{background:var(--wine);border-color:var(--red)}
+.lbn{inset-inline-start:18px}.lbp{inset-inline-end:18px}
+#lb img{max-width:92vw;object-fit:contain}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <script>if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("js")</script>
@@ -190,14 +219,23 @@ details[open] p{animation:fd .45s ease}
 
 <section id="works"><div class="wrap">
 <h2>أعمال MORO</h2>
-<p class="lead">مختارات من التصميمات التعليمية وتصميمات السوشيال ميديا. اضغط على أي عمل لعرضه كبير.</p>
-<div class="filters" role="group" aria-label="تصنيف الأعمال">
-<button aria-pressed="true" data-f="all">الكل</button><button aria-pressed="false" data-f="edu">تصميمات تعليمية</button><button aria-pressed="false" data-f="social">تصميمات سوشيال ميديا</button></div>
-<div class="grid" id="grid"></div>
+<p class="lead">مختارات من أحدث التصميمات. اضغط على أي عمل لعرضه كبير، أو افتح كل الأعمال في صفحة كاملة.</p>
+<div class="grid" id="grid" style="margin-top:36px"></div>
 <p class="empty" id="empty">الأعمال في الطريق. هتظهر هنا قريباً.</p>
+<div class="more" id="more" hidden><button class="btn main" data-open-all>عرض المزيد من الأعمال</button></div>
 </div></section>
 
-<dialog id="lb"><button class="x" aria-label="إغلاق">×</button><img alt=""><p></p></dialog>
+<div id="all" role="dialog" aria-modal="true" aria-label="كل الأعمال" hidden>
+<div class="allbar"><div class="wrap"><img src="assets/logo-horizontal.png" alt="MORO Design"><button class="btn" id="back">رجوع للموقع</button></div></div>
+<div class="wrap">
+<h2>كل الأعمال</h2>
+<p class="lead" id="acount"></p>
+<div class="filters" id="afilters" role="group" aria-label="تصنيف الأعمال" style="margin-top:26px"></div>
+<div class="grid" id="agrid"></div>
+<p class="empty" id="aempty">مفيش أعمال في التصنيف ده لسه.</p>
+</div></div>
+
+<dialog id="lb"><button class="x" aria-label="إغلاق">×</button><button class="lbn" aria-label="التالي">‹</button><button class="lbp" aria-label="السابق">›</button><img alt=""><p></p></dialog>
 
 <section id="services" style="background:var(--bg2)"><div class="wrap">
 <h2>الخدمات</h2>
@@ -252,29 +290,45 @@ details[open] p{animation:fd .45s ease}
 
 <script>
 const FB="https://www.facebook.com/mooo11267";
-/* أضف أعمالك هنا: ضع الصورة في assets/images على الريبو وأضف سطراً جديداً.
-   cat: edu = تعليمي | social = سوشيال ميديا */
+/* أضف أعمالك هنا. base = مسار الصورة بدون الامتداد (png/jpg/jpeg/webp بيتعرف عليه تلقائياً)
+   أو src = المسار كاملاً. cat: edu = تعليمي | social = سوشيال ميديا */
 const WORKS=[
- {src:"assets/images/edu-1.jpg",cat:"edu",title:"تصميم تعليمي"},
- {src:"assets/images/edu-2.jpg",cat:"edu",title:"تصميم تعليمي"},
- {src:"assets/images/edu-3.jpg",cat:"edu",title:"تصميم تعليمي"},
- {src:"assets/images/social-1.jpg",cat:"social",title:"تصميم سوشيال ميديا"},
- {src:"assets/images/social-2.jpg",cat:"social",title:"تصميم سوشيال ميديا"},
- {src:"assets/images/social-3.jpg",cat:"social",title:"تصميم سوشيال ميديا"}
+ {base:"assets/images/تصميم معلم1",cat:"edu",title:"تصميم معلم 1"},
+ {base:"assets/images/تصميم معلم2",cat:"edu",title:"تصميم معلم 2"},
+ {base:"assets/images/تصميم معلم3",cat:"edu",title:"تصميم معلم 3"},
+ {base:"assets/images/تصميم معلم4",cat:"edu",title:"تصميم معلم 4"},
+ {base:"assets/images/تصميم معلم5",cat:"edu",title:"تصميم معلم 5"}
 ];
-const L={edu:"تصميمات تعليمية",social:"تصميمات سوشيال ميديا"};
-const grid=document.getElementById("grid"),lb=document.getElementById("lb"),empty=document.getElementById("empty");
-WORKS.forEach(w=>{
- const b=document.createElement("button");b.className="work";b.dataset.cat=w.cat;b.setAttribute("aria-label","عرض "+w.title);
- const i=new Image();i.alt=w.title;i.loading="lazy";i.onerror=()=>{b.remove();check()};i.src=w.src;
- const c=document.createElement("figcaption");c.innerHTML=w.title+"<small>"+L[w.cat]+"</small>";
- b.append(i,c);b.onclick=()=>{lb.querySelector("img").src=w.src;lb.querySelector("p").textContent=w.title+" · "+L[w.cat];lb.showModal()};
- grid.append(b)});
-let cur="all";
-function check(){const n=[...grid.children].filter(e=>e.style.display!=="none").length;empty.style.display=n?"none":"block"}
-document.querySelectorAll(".filters button").forEach(f=>f.onclick=()=>{
- cur=f.dataset.f;document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===f));
- [...grid.children].forEach(e=>e.style.display=cur==="all"||e.dataset.cat===cur?"":"none");check()});
+const HOME=3; /* عدد الأعمال الظاهرة في الصفحة الرئيسية */
+const L={edu:"تصميمات تعليمية",social:"تصميمات سوشيال ميديا"},$=id=>document.getElementById(id);
+const grid=$("grid"),agrid=$("agrid"),lb=$("lb"),all=$("all");let ALL=[],cur="all",pushed=false;
+function probe(w){return new Promise(res=>{const c=w.src?[w.src]:["png","jpg","jpeg","webp"].map(e=>w.base+"."+e);
+ (function go(i){const im=new Image();im.onload=()=>res({...w,src:c[i],w:im.naturalWidth,h:im.naturalHeight});im.onerror=()=>i+1<c.length?go(i+1):res(null);im.src=c[i]})(0)})}
+function card(w,list,i,anim){const b=document.createElement("button");b.className="work";b.setAttribute("aria-label","عرض "+w.title);
+ if(anim)b.style.setProperty("--d",Math.min(i,12)*.06+"s");
+ const m=new Image();m.src=w.src;m.alt=w.title;m.width=w.w;m.height=w.h;m.loading="lazy";m.decoding="async";
+ const g=document.createElement("figcaption");g.innerHTML=w.title+"<small>"+L[w.cat]+"</small>";
+ const t=document.createElement("span");t.className="tag";t.textContent=L[w.cat];
+ b.append(t,m,g);b.onclick=()=>openLB(list,i);return b}
+function fill(el,list,anim){el.replaceChildren(...list.map((w,i)=>card(w,list,i,anim)))}
+function render(){const h=ALL.slice(0,HOME);fill(grid,h);$("empty").style.display=ALL.length?"none":"block";$("more").hidden=ALL.length<=HOME}
+function fillAll(){const list=cur==="all"?ALL:ALL.filter(w=>w.cat===cur);fill(agrid,list,true);$("aempty").style.display=list.length?"none":"block";
+ $("acount").textContent="عدد الأعمال: "+list.length;
+ const fb=$("afilters");fb.innerHTML="";fb.hidden=new Set(ALL.map(w=>w.cat)).size<2;[["all","الكل"],["edu",L.edu],["social",L.social]].forEach(([k,n])=>{
+  const c=k==="all"?ALL.length:ALL.filter(w=>w.cat===k).length;if(k!=="all"&&!c)return;
+  const b=document.createElement("button");b.setAttribute("aria-pressed",k===cur);b.innerHTML=n+"<small>"+c+"</small>";b.onclick=()=>{cur=k;fillAll()};fb.append(b)})}
+function showAllPage(on){all.hidden=!on;document.documentElement.classList.toggle("lock",on);if(on){all.scrollTop=0;fillAll()}}
+document.querySelectorAll("[data-open-all]").forEach(b=>b.onclick=()=>{pushed=true;location.hash="all-works"});
+$("back").onclick=()=>{if(pushed){pushed=false;history.back()}else{history.replaceState(null,"",location.pathname+location.search);showAllPage(false)}};
+addEventListener("hashchange",()=>showAllPage(location.hash==="#all-works"&&ALL.length>0));
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!all.hidden&&!lb.open)$("back").click()});
+Promise.all(WORKS.map(probe)).then(r=>{ALL=r.filter(Boolean);render();if(location.hash==="#all-works")showAllPage(true)});
+let LL=[],LI=0;const lbi=lb.querySelector("img"),lbp=lb.querySelector("p"),nx=lb.querySelector(".lbn"),pv=lb.querySelector(".lbp");
+function showLB(){const w=LL[LI];lbi.src=w.src;lbi.alt=w.title;lbp.textContent=w.title+" · "+L[w.cat]+(LL.length>1?"  ("+(LI+1)+"/"+LL.length+")":"");nx.hidden=pv.hidden=LL.length<2}
+function openLB(l,i){LL=l;LI=i;showLB();lb.showModal()}
+function step(d){LI=(LI+d+LL.length)%LL.length;showLB()}
+nx.onclick=()=>step(1);pv.onclick=()=>step(-1);
+lb.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")step(1);if(e.key==="ArrowRight")step(-1)});
 lb.querySelector(".x").onclick=()=>lb.close();lb.onclick=e=>{if(e.target===lb)lb.close()};
 const br=document.getElementById("brief"),note=document.getElementById("note");
 document.querySelectorAll("[data-brief]").forEach(b=>b.onclick=()=>{note.textContent="";br.showModal()});
@@ -299,15 +353,13 @@ else{const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){r
 const pg=document.getElementById("pg"),nv=document.querySelector("nav");
 addEventListener("scroll",()=>{const h=document.documentElement;pg.style.transform="scaleX("+(scrollY/(h.scrollHeight-innerHeight||1))+")";nv.classList.toggle("sc",scrollY>30)},{passive:true});
 if(document.documentElement.classList.contains("js")&&"IntersectionObserver" in window){
- const G=[["section h2,.lead"],[".filters,.empty"],[".grid>.work"],[".svc article"],[".say blockquote"],[".steps li"],["details"],[".about>div>*"],[".cta .btn"],[".stats .wrap>div"]];
+ const G=[["section h2,.lead"],["#works .empty"],[".svc article"],[".say blockquote"],[".steps li"],["details"],[".about>div>*"],[".cta .btn"],[".stats .wrap>div"]];
  const ro=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;const e=x.target;ro.unobserve(e);e.classList.add("in");
   setTimeout(()=>e.classList.remove("rv","in","clip"),1500+parseFloat(e.style.getPropertyValue("--d")||0)*1000)}),{threshold:.15});
  G.forEach(([s])=>document.querySelectorAll(s).forEach(e=>{const i=[...e.parentElement.children].filter(c=>c.matches(s)).indexOf(e);
   e.classList.add("rv");e.style.setProperty("--d",Math.min(i,6)*.12+"s");ro.observe(e)}));
  const f=document.querySelector(".about figure");f.classList.add("clip");f.style.setProperty("--d",".1s");ro.observe(f);
 }
-document.querySelectorAll(".filters button").forEach(f=>f.addEventListener("click",()=>{
- [...grid.children].forEach(e=>{if(e.style.display!=="none"){e.classList.remove("pop");void e.offsetWidth;e.classList.add("pop")}})}));
 document.getElementById("yr").textContent=new Date().getFullYear();
 </script>
 </body>
