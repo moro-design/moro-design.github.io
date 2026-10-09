@@ -358,7 +358,7 @@ if(document.documentElement.classList.contains("js")&&"IntersectionObserver" in 
   setTimeout(()=>e.classList.remove("rv","in","clip"),1500+parseFloat(e.style.getPropertyValue("--d")||0)*1000)}),{threshold:.15});
  G.forEach(([s])=>document.querySelectorAll(s).forEach(e=>{const i=[...e.parentElement.children].filter(c=>c.matches(s)).indexOf(e);
   e.classList.add("rv");e.style.setProperty("--d",Math.min(i,6)*.12+"s");ro.observe(e)}));
- const f=document.querySelector(".about figure");f.classList.add("clip");f.style.setProperty("--d",".1s");ro.observe(f);
+ const f=document.querySelector(".about figure");f.classList.add("clip");f.style.setProperty("--d",".1s");new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){f.classList.add("in");setTimeout(()=>f.classList.remove("rv","in","clip"),2000);o.disconnect()}},{threshold:.2}).observe(f.parentElement);
 }
 document.getElementById("yr").textContent=new Date().getFullYear();
 </script>
