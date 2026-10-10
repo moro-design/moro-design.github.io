@@ -37,14 +37,14 @@ nav ul a:hover{color:var(--ink)}
 /* hero */
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;position:relative;isolation:isolate;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 55% at 22% 45%,rgba(123,5,29,.75),transparent 70%),radial-gradient(35% 35% at 12% 85%,rgba(255,106,61,.22),transparent 70%)}
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .hero h1{font-size:clamp(46px,9vw,112px);line-height:1.1}
 .hero h1 span{display:block;font-size:.34em;color:var(--ember);margin-top:14px}
 .hero p{margin:24px 0 34px;font-size:19px;color:#e6cfc9;max-width:46ch}
 .hero .acts{display:flex;gap:14px;flex-wrap:wrap}
-.mark{position:relative;perspective:900px;justify-self:center;width:min(440px,80%)}
-.mark img{width:100%;transition:transform .15s ease-out;filter:drop-shadow(0 0 60px rgba(190,10,46,.55))}
-@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.mark{order:-1;width:220px}.hero{text-align:center}.hero p{margin-inline:auto}.hero .acts{justify-content:center}}
+.mark{position:relative;perspective:900px;justify-self:center;display:flex;justify-content:center}
+.mark img{width:auto;max-width:100%;height:min(74vh,700px);transition:transform .15s ease-out;filter:drop-shadow(0 0 60px rgba(190,10,46,.55))}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.mark{order:-1}.mark img{height:340px}.hero{text-align:center}.hero p{margin-inline:auto}.hero .acts{justify-content:center}}
 @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .hero .wrap>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}.hero .mark{animation-delay:.2s}
 /* stats */
@@ -282,7 +282,7 @@ html.lock #totop{display:none}
 <p>أصمّم محتوى تعليمي وتصميمات سوشيال ميديا بشكل واضح وقوي، عشان الفكرة توصل من أول نظرة. أكثر من 4 سنوات خبرة واتعاملت مع اكتر من 300 عميل وعملت ما يزيد عن 1000 تصميم.</p>
 <div class="acts"><button class="btn main" data-brief>اطلب تصميم</button><a class="btn" href="#works">شاهد الأعمال</a></div>
 </div>
-<div class="mark" id="mark"><img src="assets/logo-vertical.png" alt="شعار MORO"></div>
+<div class="mark" id="mark"><img src="assets/logo-vertical.webp" alt="شعار MORO" width="900" height="1258" fetchpriority="high"></div>
 </div></header>
 
 <div class="stats"><div class="wrap">
@@ -404,17 +404,17 @@ const FB="https://www.facebook.com/mooo11267";
    {base:"assets/images/اسم الصورة",cat:"social",title:"عنوان العمل",desc:"وصف قصير",client:"اسم العميل",year:"2026",tools:"Photoshop"},
    الترتيب في الموقع = ترتيب الأسطر (أول 3 أعمال تظهر في الصفحة الرئيسية) ===== */
 const WORKS=[
- {base:"assets/images/تصميم معلم1",cat:"edu",title:"تصميم هتشجع مين؟"},
- {base:"assets/images/تصميم معلم2",cat:"edu",title:"قولنا داخل السنة ازاي؟"},
- {base:"assets/images/تصميم معلم3",cat:"edu",title:"بوستر جدول مواعيد جميع الصفوف"},
- {base:"assets/images/تصميم معلم4",cat:"edu",title:"اختار طريقة مذاكرتك"},
- {base:"assets/images/تصميم معلم5",cat:"edu",title:"ثامنيل الكورس التأسيسي"},
- {base:"assets/images/تصميم معلم6",cat:"edu",title:"ثامنيل دليلك الشامل عن البكالوريا"},
- {base:"assets/images/تصميم معلم7",cat:"edu",title:"متخفش من نتيجة سعيك"},
- {base:"assets/images/تصميم معلم8",cat:"edu",title:"بوستر تكريم أوائل الطلبة"},
- {base:"assets/images/تصميم معلم9",cat:"edu",title:"بوستر الكورس التأسيسي"},
- {base:"assets/images/تصميم معلم10",cat:"edu",title:"بوستر البداية في السناتر"},
-{base:"assets/images/تصميم معلم11",cat:"edu",title:"بوستر توقع اتعاقدنا مع مين؟"}
+ {base:"assets/images/تصميم تعليمي 1",cat:"edu",title:"تصميم هتشجع مين؟"},
+ {base:"assets/images/تصميم تعليمي 2",cat:"edu",title:"قولنا داخل السنة ازاي؟"},
+ {base:"assets/images/تصميم تعليمي 3",cat:"edu",title:"بوستر جدول مواعيد جميع الصفوف"},
+ {base:"assets/images/تصميم تعليمي 4",cat:"edu",title:"اختار طريقة مذاكرتك"},
+ {base:"assets/images/تصميم تعليمي 5",cat:"edu",title:"ثامنيل الكورس التأسيسي"},
+ {base:"assets/images/تصميم تعليمي 6",cat:"edu",title:"ثامنيل دليلك الشامل عن البكالوريا"},
+ {base:"assets/images/تصميم تعليمي 7",cat:"edu",title:"متخفش من نتيجة سعيك"},
+ {base:"assets/images/تصميم تعليمي 8",cat:"edu",title:"بوستر تكريم أوائل الطلبة"},
+ {base:"assets/images/تصميم تعليمي 9",cat:"edu",title:"بوستر الكورس التأسيسي"},
+ {base:"assets/images/تصميم تعليمي 10",cat:"edu",title:"بوستر البداية في السناتر"},
+ {base:"assets/images/تصميم تعليمي 11",cat:"edu",title:"بوستر توقع اتعاقدنا مع مين؟"}
 ];
 const HOME=3; /* عدد الأعمال الظاهرة في الصفحة الرئيسية */
 const L={edu:"تصميمات تعليمية",social:"تصميمات سوشيال ميديا"},$=id=>document.getElementById(id);
